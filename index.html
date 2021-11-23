@@ -11,6 +11,7 @@ limitations under the License.
 ==============================================================================-->
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0, user-scalable=no">
@@ -18,25 +19,30 @@ limitations under the License.
     body {
       margin: 0;
     }
+
     #main {
       margin: 0;
       position: relative;
     }
+
     #canvas-wrapper {
       margin-top: 80px;
       position: relative;
     }
+
     canvas {
       position: absolute;
       top: 0;
       left: 0;
     }
+
     #top-bar {
       margin-left: 300px;
       position: relative;
     }
   </style>
 </head>
+
 <body>
   <div id="stats"></div>
   <div id="main">
@@ -45,6 +51,8 @@ limitations under the License.
         <label for="videofile">Upload a video file:</label>
         <input type="file" id="videofile" name="video" accept="video/*">
         <button id="submit">Run</button>
+        <a id="frames-video" style="display: none;">Download Pose Video</a>
+        <a id="frames-json" style="display: none;">Download Pose Co-ordinates</a>
       </div>
     </div>
     <div class="container" id="canvas-wrapper">
@@ -61,4 +69,5 @@ limitations under the License.
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js"></script>
 <script src="src/index.js"></script>
+
 </html>

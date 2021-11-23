@@ -25,14 +25,15 @@ export class Context {
     this.source = document.getElementById('currentVID');
     this.ctx = this.canvas.getContext('2d');
     const stream = this.canvas.captureStream();
-    const options = {mimeType: 'video/webm; codecs=vp9'};
+    const options = { mimeType: 'video/webm; codecs=vp9' };
     this.mediaRecorder = new MediaRecorder(stream, options);
-    this.mediaRecorder.ondataavailable = this.handleDataAvailable;
+    this.mediaRecorder.ondataavailable = this.handleDataAvailable.bind(this);
+    this.frames = [];
   }
 
   drawCtx() {
     this.ctx.drawImage(
-        this.video, 0, 0, this.video.videoWidth, this.video.videoHeight);
+      this.video, 0, 0, this.video.videoWidth, this.video.videoHeight);
   }
 
   clearCtx() {
@@ -66,7 +67,7 @@ export class Context {
    */
   drawKeypoints(keypoints) {
     const keypointInd =
-        posedetection.util.getKeypointIndexBySide(params.STATE.model);
+      posedetection.util.getKeypointIndexBySide(params.STATE.model);
     this.ctx.fillStyle = 'White';
     this.ctx.strokeStyle = 'White';
     this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
@@ -109,8 +110,8 @@ export class Context {
     this.ctx.lineWidth = params.DEFAULT_LINE_WIDTH;
 
     posedetection.util.getAdjacentPairs(params.STATE.model).forEach(([
-                                                                      i, j
-                                                                    ]) => {
+      i, j
+    ]) => {
       const kp1 = keypoints[i];
       const kp2 = keypoints[j];
 
@@ -138,18 +139,21 @@ export class Context {
 
   handleDataAvailable(event) {
     if (event.data.size > 0) {
-      const recordedChunks = [event.data];
+      console.log({ frames: this.frames });
+      var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(this.frames));
+      var dlAnchorElem = document.getElementById('frames-json');
+      dlAnchorElem.setAttribute("href", dataStr);
+      dlAnchorElem.setAttribute("download", "frames.json");
+      dlAnchorElem.style = 'display: block';
 
+      const recordedChunks = [event.data];
       // Download.
-      const blob = new Blob(recordedChunks, {type: 'video/webm'});
+      const blob = new Blob(recordedChunks, { type: 'video/webm' });
       const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      document.body.appendChild(a);
-      a.style = 'display: none';
-      a.href = url;
-      a.download = 'pose.webm';
-      a.click();
-      window.URL.revokeObjectURL(url);
+      var dlAnchorElem2 = document.getElementById('frames-video');
+      dlAnchorElem2.setAttribute("href", url);
+      dlAnchorElem2.setAttribute("download", "frames.webm");
+      dlAnchorElem2.style = 'display: block';
     }
   }
 }
