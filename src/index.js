@@ -17,6 +17,13 @@
 
 import '@tensorflow/tfjs-backend-webgl';
 import * as mpPose from '@mediapipe/pose';
+import React from 'react';
+import ReactDOM from "react-dom";
+import { MyApp } from "./myapp";
+
+const appEl = document.getElementById("app");
+ReactDOM.render(<MyApp />, appEl);
+
 
 import * as tfjsWasm from '@tensorflow/tfjs-backend-wasm';
 
