@@ -211,28 +211,29 @@ async function run() {
   await runFrame();
 }
 
-async function app() {
-  // Gui content will change depending on which model is in the query string.
-  const urlParams = new URLSearchParams(window.location.search);
-  if (!urlParams.has('model')) {
-    alert('Cannot find model in the query string.');
-    return;
-  }
+// async function app() {
+//   // Gui content will change depending on which model is in the query string.
+//   const urlParams = new URLSearchParams(window.location.search);
+//   console.log({ urlParams });
+//   if (!urlParams.has('model')) {
+//     alert('Cannot find model in the query string.');
+//     return;
+//   }
 
-  await setupDatGui(urlParams);
-  stats = setupStats();
-  detector = await createDetector();
-  camera = new Context();
+//   await setupDatGui(urlParams);
+//   stats = setupStats();
+//   detector = await createDetector();
+//   camera = new Context();
 
-  await setBackendAndEnvFlags(STATE.flags, STATE.backend);
+//   await setBackendAndEnvFlags(STATE.flags, STATE.backend);
 
-  const runButton = document.getElementById('submit');
-  runButton.onclick = run;
+//   const runButton = document.getElementById('submit');
+//   runButton.onclick = run;
 
-  const uploadButton = document.getElementById('videofile');
-  uploadButton.onchange = updateVideo;
+//   const uploadButton = document.getElementById('videofile');
+//   uploadButton.onchange = updateVideo;
 
-  checkUpdate();
-};
+//   checkUpdate();
+// };
 
-app();
+// app();
