@@ -44,32 +44,7 @@ limitations under the License.
 </head>
 
 <body>
-  <div style="display: flex;">
-    <div id="app"></div>
-    <div>
-      <div id="stats"></div>
-      <div id="main">
-        <div class="container">
-          <div id="top-bar">
-            <label for="videofile">Upload a (short) video file:</label>
-            <input type="file" id="videofile" name="video" accept="video/*">
-            <button id="submit">Run</button>
-            <a id="frames-video" style="display: none;">Download Pose Video</a>
-            <a id="frames-json" style="display: none;">Download Pose Co-ordinates</a>
-          </div>
-        </div>
-        <div class="container" id="canvas-wrapper">
-          <canvas id="output"></canvas>
-          <video id="video">
-            <source id="currentVID" src="" type="video/mp4">
-          </video>
-        </div>
-        <div class="container">
-          <span id="status"></span>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="app"></div>
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.6/dat.gui.min.js"></script>
