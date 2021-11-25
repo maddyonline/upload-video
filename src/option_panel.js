@@ -19,6 +19,7 @@ import * as tf from '@tensorflow/tfjs-core';
 
 import * as params from './params';
 import { setBackendAndEnvFlags } from './util';
+import * as dat from 'dat.gui';
 
 /**
  * Records each flag's default value under the runtime environment and is a

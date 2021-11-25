@@ -14,6 +14,10 @@
  * limitations under the License.
  * =============================================================================
  */
+
+import Stats from "stats.js";
+
+
 export function setupStats() {
   const stats = new Stats();
   stats.customFpsPanel = stats.addPanel(new Stats.Panel('FPS', '#0ff', '#002'));
